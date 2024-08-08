@@ -1,0 +1,106 @@
+<div id="add-edit-form">
+  <form
+    [formGroup]="addEditStudentForm"
+    (ngSubmit)="submitForm(addEditStudentForm)"
+  >
+    @if(serverError.length > 0){
+    <p class="text-danger fw-bold text-center">{{ serverError }}</p>
+    }
+    <div id="name-inp" class="my-2">
+      <div class="row">
+        <div class="col-md-4">
+          <div
+            class="h-100 d-flex justify-content-center align-items-center fw-bold"
+          >
+            <label for="nationalId" class="me-2">Name</label>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div>
+            <input
+              formControlName="name"
+              type="text"
+              class="form-control my-1"
+            />
+            @if(addEditStudentForm.get('name')?.errors &&
+            (addEditStudentForm.get('name')?.touched || showErrors)){
+            @if(addEditStudentForm.get('name')?.getError('required')){
+            <div>
+              <span class="fw-bold text-danger"
+                ><i class="fa-solid fa-circle-exclamation"></i> Name is
+                required</span
+              >
+            </div>
+            } }
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="nationalId-inp" class="my-2">
+      <div class="row">
+        <div class="col-md-4">
+          <div
+            class="h-100 d-flex justify-content-center align-items-center fw-bold"
+          >
+            <label for="nationalId" class="me-2">National ID</label>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div>
+            <input
+              formControlName="nationalId"
+              type="text"
+              class="form-control my-1"
+            />
+            @if(addEditStudentForm.get('nationalId')?.errors &&
+            (addEditStudentForm.get('nationalId')?.touched || showErrors)){
+            @if(addEditStudentForm.get('nationalId')?.getError('required')){
+            <span class="fw-bold text-danger"
+              ><i class="fa-solid fa-circle-exclamation"></i> National ID is
+              required</span
+            >
+            } @if(addEditStudentForm.get('nationalId')?.getError('pattern')){
+            <span class="fw-bold text-danger"
+              ><i class="fa-solid fa-circle-exclamation"></i> National ID must
+              be exactly 14 number
+            </span>
+            } }
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="academicYear-inp" class="my-2">
+      <div class="row">
+        <div class="col-md-4">
+          <div
+            class="h-100 d-flex justify-content-center align-items-center fw-bold"
+          >
+            <label for="academicYearId" class="me-2">Academic Year</label>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div>
+            <select formControlName="academicYearId" class="form-control">
+              @for(item of academicYears;track item){
+              <option value="{{ item.id }}">{{ item.name }}</option>
+              }
+            </select>
+            @if(addEditStudentForm.get('academicYearId')?.errors &&
+            (addEditStudentForm.get('academicYearId')?.touched || showErrors)){
+            @if(addEditStudentForm.get('academicYearId')?.getError('required')){
+            <span class="fw-bold text-danger"
+              ><i class="fa-solid fa-circle-exclamation"></i> Academic Year is
+              Required
+            </span>
+            } }
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="buttons d-flex justify-content-end">
+      <button id="save-btn" class="blue-btn">Save</button>
+      <button id="cancel-btn" class="red-btn" (click)="cancel()">cancel</button>
+    </div>
+  </form>
+</div>

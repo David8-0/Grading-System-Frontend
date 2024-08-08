@@ -16,23 +16,23 @@ export class StudentService {
     return this._http.get<Student[]>(this.baseUrl);
   }
 
-  getAcademicYears(): Observable<AcademicYear> {
-    return this._http.get<AcademicYear>(this.baseUrl + 'academicyears');
+  getAcademicYears(): Observable<AcademicYear[]> {
+    return this._http.get<AcademicYear[]>(this.baseUrl + 'academicyears');
   }
 
   getById(id: number): Observable<Student> {
     return this._http.get<Student>(this.baseUrl + `${id}`);
   }
 
-  Add(student: Student): Observable<Student> {
-    return this._http.post<Student>(this.baseUrl, student);
+  Add(student: Student): Observable<Student[]> {
+    return this._http.post<Student[]>(this.baseUrl, student);
   }
 
-  update(student: Student, id: number): Observable<Student> {
-    return this._http.post<Student>(this.baseUrl + `${id}`, student);
+  update(student: Student, id: number): Observable<Student[]> {
+    return this._http.put<Student[]>(this.baseUrl + `${id}`, student);
   }
 
-  delete(id: number): Observable<any> {
-    return this._http.delete<any>(this.baseUrl + `${id}`);
+  delete(id: number): Observable<Student[]> {
+    return this._http.delete<Student[]>(this.baseUrl + `${id}`);
   }
 }

@@ -1,0 +1,39 @@
+<div class="container">
+  <h2 class="my-3">Subjects</h2>
+  <div id="select-subject">
+    <select class="form-control" [(ngModel)]="selectedSubject">
+      @for(item of subjects; track item.subjectId){
+      <option [value]="item">{{ item.subjectName }}</option>
+      }
+    </select>
+    <h3>{{ selectedSubject.subjectName }}</h3>
+  </div>
+  <div class="my-4" id="subjects-table">
+    <table class="table table-hover table-borderd">
+      <thead class="thead-dark">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Academic Year</th>
+          <th>Term1 (30)</th>
+          <th>Term2 (30)</th>
+          <th>Total</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for(item of selectedSubject.studentGrades;track item){
+        <tr>
+          <td>{{ item.studentId }}</td>
+          <td>{{ item.studentName }}</td>
+          <td>{{ item.academicYear }}</td>
+          <td>{{ item.term1 }}</td>
+          <td>{{ item.term2 }}</td>
+          <td>{{ item.total }}</td>
+          <td></td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

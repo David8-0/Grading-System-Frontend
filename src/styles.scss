@@ -37,3 +37,28 @@
     margin-bottom: 25px;
   }
 }
+
+%common-btn {
+  color: $white;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.blue-btn {
+  @extend %common-btn;
+  background-color: $bg-blue;
+}
+
+.red-btn {
+  @extend %common-btn;
+  background-color: $bg-red;
+}
+
+.green-btn {
+  @extend %common-btn;
+  background-color: $bg-green;
+}

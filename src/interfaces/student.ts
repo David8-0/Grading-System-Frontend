@@ -4,7 +4,8 @@ export interface Student {
   id?: number;
   nationalId: string;
   name: string;
-  academicYear: number;
-  totalGrade?: string;
+  academicYearId: number;
+  academicYear: string;
+  totalGrade: string;
   grades?: StudentSubject[];
 }

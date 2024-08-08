@@ -2,20 +2,46 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { StudentService } from '../../services/student.service';
 import { Student } from '../../interfaces/student';
 import { Subscription } from 'rxjs';
+import { AcademicYear } from '../../interfaces/academic-year';
+import { AddEditStudentComponent } from '../add-edit-student/add-edit-student.component';
+import { RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { SearchByAcademicYearPipe } from '../../pipes/search-by-academic-year.pipe';
+import { SearchByGradePipe } from '../../pipes/search-by-grade.pipe';
+import { SearchByNamePipe } from '../../pipes/searchByName.pipe';
+import { SearchByNationalIdPipe } from '../../pipes/search-by-national-id.pipe';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-students',
   standalone: true,
-  imports: [],
+  imports: [
+    AddEditStudentComponent,
+    RouterLink,
+    CommonModule,
+    FormsModule,
+    SearchByAcademicYearPipe,
+    SearchByGradePipe,
+    SearchByNamePipe,
+    SearchByNationalIdPipe,
+  ],
   templateUrl: './students.component.html',
   styleUrl: './students.component.scss',
 })
 export class StudentsComponent implements OnInit, OnDestroy {
+  ediStudent: Student | null = null;
   students: Student[] = [];
   isShowDeleteWarning: boolean = false;
   haveGrades: boolean = true;
   deleteStudentId: number | null = null;
   subscriptionsList: Subscription[] = [];
+  isShowAddEditStudent: boolean = false;
+
+  nameSearchKey: string = '';
+  academicYearSearchKey: string = '';
+  nationalIdSearchKey: string = '';
+  gradeSearchKey: string = '';
+
   constructor(private _StudentService: StudentService) {}
 
   ngOnInit(): void {
@@ -59,5 +85,22 @@ export class StudentsComponent implements OnInit, OnDestroy {
         ? (this.haveGrades = true)
         : (this.haveGrades = false);
     }
+  }
+
+  showAddEditStudent(student: Student | undefined) {
+    if (student) this.ediStudent = student;
+    this.isShowAddEditStudent = true;
+  }
+
+  hideAddEditStudent() {
+    this.isShowAddEditStudent = false;
+    this.ediStudent = null;
+  }
+
+  resetSearchParameters() {
+    this.nameSearchKey = '';
+    this.academicYearSearchKey = '';
+    this.nationalIdSearchKey = '';
+    this.gradeSearchKey = '';
   }
 }
