@@ -1,117 +1,129 @@
 <div class="container">
-  <h1 class="text-center my-5">Grading System</h1>
-  <div class="row">
-    <div class="col-md-6">
-      <h2 class="my-3">Students Page</h2>
-      <div id="search" class="mb-5">
-        <div class="row g-3">
-          <div class="col-md-6">
-            <input
-              class="form-control"
-              placeholder="Search by Name"
-              type="text"
-              id="searchInp"
-              [(ngModel)]="nameSearchKey"
-            />
-          </div>
-          <div class="col-md-6">
-            <input
-              class="form-control"
-              placeholder="Search by National ID"
-              type="text"
-              id="searchInp"
-              [(ngModel)]="nationalIdSearchKey"
-            />
-          </div>
-          <div class="col-md-6">
-            <input
-              class="form-control"
-              placeholder="Search by Academic Year"
-              type="text"
-              id="searchInp"
-              [(ngModel)]="academicYearSearchKey"
-            />
-          </div>
-          <div class="col-md-6">
-            <select
-              class="form-control"
-              id="gradeSearch"
-              [(ngModel)]="gradeSearchKey"
-            >
-              <option value="">Select Grade</option>
-              <option value="A">A</option>
-              <option value="B">B</option>
-              <option value="C">C</option>
-              <option value="D">D</option>
-              <option value="F">F</option>
-            </select>
-          </div>
-          <div>
-            <button class="blue-btn" (click)="resetSearchParameters()">
-              Reset Search
-            </button>
+  <h1 class="text-center text-white my-5">Grading System</h1>
+  <div class="cstm-card w-100 mb-4">
+    <div class="row">
+      <div class="col-md-6">
+        <h2 class="my-3">Students Page</h2>
+        <div id="search" class="mb-5">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <input
+                class="form-control"
+                placeholder="Search by Name"
+                type="text"
+                id="searchInp"
+                [(ngModel)]="nameSearchKey"
+              />
+            </div>
+            <div class="col-md-6">
+              <input
+                class="form-control"
+                placeholder="Search by National ID"
+                type="text"
+                id="searchInp"
+                [(ngModel)]="nationalIdSearchKey"
+              />
+            </div>
+            <div class="col-md-6">
+              <input
+                class="form-control"
+                placeholder="Search by Academic Year"
+                type="text"
+                id="searchInp"
+                [(ngModel)]="academicYearSearchKey"
+              />
+            </div>
+            <div class="col-md-6">
+              <select
+                class="form-control"
+                id="gradeSearch"
+                [(ngModel)]="gradeSearchKey"
+              >
+                <option value="">Select Grade</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+                <option value="F">F</option>
+              </select>
+            </div>
+            <div>
+              <button
+                class="blue-btn"
+                id="reset-btn"
+                (click)="resetSearchParameters()"
+              >
+                Reset Search
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="col-md-6">
-      <div class="d-flex h-100 justify-content-end align-items-end">
-        <button class="green-btn" (click)="showAddEditStudent(undefined)">
-          Add Student
-        </button>
+      <div class="col-md-6">
+        <div class="d-flex h-100 justify-content-end align-items-end">
+          <button
+            class="green-btn"
+            id="add-btn"
+            (click)="showAddEditStudent(undefined)"
+          >
+            Add Student
+          </button>
+        </div>
       </div>
     </div>
   </div>
 
-  <div id="students-table">
-    <table class="table table-hover table-borderd">
-      <thead class="thead-dark">
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Academic Year</th>
-          <th>Grade</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for(item of students |searchByName:nameSearchKey
-        |searchByAcademicYear:academicYearSearchKey
-        |searchByGrade:gradeSearchKey |searchByNationalId:nationalIdSearchKey
-        ;track item){
-        <tr>
-          <td>{{ item.id }}</td>
-          <td>{{ item.name }}</td>
-          <td>{{ item.academicYear }}</td>
-          @if(item.totalGrade == "z"){
-          <td>no grade recorded yet</td>
-          }@else{
-          <td>{{ item.totalGrade }}</td>
+  <div class="cstm-card">
+    <div id="students-table" class="overflow-x-auto">
+      <table class="table table-hover table-borderd">
+        <thead class="thead-dark">
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Academic Year</th>
+            <th>Grade</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for(item of students |searchByName:nameSearchKey
+          |searchByAcademicYear:academicYearSearchKey
+          |searchByGrade:gradeSearchKey |searchByNationalId:nationalIdSearchKey
+          ;track item){
+          <tr>
+            <td>{{ item.id }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.academicYear }}</td>
+            @if(item.totalGrade == "z"){
+            <td>no grade recorded yet</td>
+            }@else{
+            <td>{{ item.totalGrade }}</td>
+            }
+            <td>
+              <div id="control-btns">
+                <button
+                  id="edit-btn"
+                  class="grey-btn me-2"
+                  [routerLink]="['/grades', item.id]"
+                >
+                  View Grades
+                </button>
+                <button
+                  class="blue-btn me-2"
+                  (click)="showAddEditStudent(item)"
+                >
+                  Edit
+                </button>
+                <button class="red-btn me-2" (click)="showDeleteMessage(item)">
+                  Delete
+                </button>
+              </div>
+            </td>
+          </tr>
           }
-          <td>
-            <button
-              class="btn btn-info me-2"
-              [routerLink]="['grades', item.id]"
-            >
-              View Grades
-            </button>
-            <button
-              class="btn btn-warning me-2"
-              (click)="showAddEditStudent(item)"
-            >
-              Edit
-            </button>
-            <button
-              class="btn btn-danger me-2"
-              (click)="showDeleteMessage(item)"
-            >
-              Delete
-            </button>
-          </td>
-        </tr>
-        }
-      </tbody>
-    </table>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
 
@@ -125,16 +137,11 @@
     this students have grades and all grades will be deleted !
   </p>
   }
-  <div id="" class="text-end control-buttons">
-    <button
-      id=""
-      type="button"
-      class="btn grey-btn"
-      (click)="hideDeleteMessage()"
-    >
+  <div class="text-end control-buttons">
+    <button class="red-btn" (click)="deleteBook()">Delete</button>
+    <button type="button" class="grey-btn" (click)="hideDeleteMessage()">
       Cancel
     </button>
-    <button id="" class="btn red-btn" (click)="deleteBook()">Delete</button>
   </div>
 </div>
 

@@ -1,16 +1,21 @@
 @import "../../scss_variables/_variables";
-.wrapper {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 40%;
-  transform: translate(-50%, -50%);
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 5px 5px 10px 7px $shadow-color;
-  background-color: $white;
-}
 
-#x-btn {
-  cursor: pointer;
+#edit-btn {
+  text-decoration: none;
+}
+@media (max-width: 767.98px) {
+  #students-table {
+    #control-btns {
+      button {
+        margin-block: 5px;
+        width: 100%;
+      }
+    }
+  }
+}
+@media (max-width: 575.98px) {
+  #reset-btn,
+  #add-btn {
+    width: 100%;
+  }
 }

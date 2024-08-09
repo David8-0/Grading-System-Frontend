@@ -1,26 +1,7 @@
 @import "scss_variables/variables";
 
-.control-buttons {
-  button,
-  a {
-    margin-inline-end: 10px;
-    padding: 10px 20px;
-    border-radius: 15px;
-    font-size: 16px;
-    font-weight: 600;
-    transition: all 0.3s;
-  }
-  .grey-btn {
-    background-color: $bg-light;
-  }
-  .red-btn {
-    background-color: $bg-red;
-    color: $white;
-  }
-  .blue-btn {
-    background-color: $bg-blue;
-    color: $white;
-  }
+body {
+  background-color: $bg-body;
 }
 
 .delete-warning {
@@ -29,7 +10,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  box-shadow: 5px 5px 10px 7px $shadow-color;
+  box-shadow: 5px 5px 30px 5px $shadow-color;
   color: $header-color;
   h3 {
     font-size: 20px;
@@ -45,7 +26,7 @@
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
-  margin: 5px;
+  margin-inline: 3px;
 }
 
 .blue-btn {
@@ -61,4 +42,60 @@
 .green-btn {
   @extend %common-btn;
   background-color: $bg-green;
+}
+
+.grey-btn {
+  @extend %common-btn;
+  color: black;
+  background-color: $bg-light;
+}
+
+.wrapper {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 60%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 30px 5px $shadow-color;
+  background-color: $white;
+}
+
+#x-btn {
+  cursor: pointer;
+}
+
+.cstm-card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 767.98px) {
+  .wrapper {
+    width: 70%;
+  }
+}
+
+@media (max-width: 575.98px) {
+  %common-btn {
+    padding: 4px 8px;
+    margin-inline: 0px;
+    margin-block: 8px;
+  }
+  .delete-warning {
+    width: 100%;
+    .control-buttons {
+      display: flex;
+      flex-direction: column;
+      button {
+        width: 100%;
+      }
+    }
+  }
+  .wrapper {
+    width: 100%;
+  }
 }

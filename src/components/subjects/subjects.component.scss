@@ -1,0 +1,9 @@
+@import "../../scss_variables/_variables";
+@media (max-width: 575.98px) {
+  #subject-status {
+    flex-direction: column;
+    .green-btn {
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,120 @@
+<div>
+  <div id="student-info" class="text-center">
+    @if(grade && grade.studentId>0){
+    <p class="fw-bold text-center">Name: {{ grade.studentName }}</p>
+    <p class="fw-bold text-center">Academic Year: {{ grade.academicYear }}</p>
+    }
+  </div>
+  @if(serverError.length > 0){
+  <p class="text-danger fw-bold text-center">{{ serverError }}</p>
+  }
+  <form
+    [formGroup]="addEditStudentGradeForm"
+    (ngSubmit)="submitForm(addEditStudentGradeForm)"
+  >
+    <div id="term1-inp" class="my-2">
+      <div class="row">
+        <div class="col-md-4">
+          <div
+            class="h-100 d-flex justify-content-center align-items-center fw-bold"
+          >
+            <label for="term1" class="me-2">Term1 :</label>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div>
+            <input
+              id="term1"
+              formControlName="term1"
+              type="number"
+              class="form-control my-1"
+            />
+
+            @if(addEditStudentGradeForm.get('term1')?.errors &&
+            (addEditStudentGradeForm.get('term1')?.touched || showErrors) ){
+            @if(addEditStudentGradeForm.get('term1')?.getError('max')){
+            <div>
+              <span class="fw-bold text-danger"
+                ><i class="fa-solid fa-circle-exclamation"></i> you exceeded the
+                maximum degree {{ maximumDegree }}
+              </span>
+            </div>
+            } }
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="term2-inp" class="my-2">
+      <div class="row">
+        <div class="col-md-4">
+          <div
+            class="h-100 d-flex justify-content-center align-items-center fw-bold"
+          >
+            <label for="term2" class="me-2">Term2 :</label>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div>
+            <input
+              id="term2"
+              formControlName="term2"
+              type="number"
+              class="form-control my-1"
+            />
+            @if(addEditStudentGradeForm.get('term2')?.errors &&
+            (addEditStudentGradeForm.get('term2')?.touched || showErrors) ){
+            @if(addEditStudentGradeForm.get('term2')?.getError('max')){
+            <div>
+              <span class="fw-bold text-danger"
+                ><i class="fa-solid fa-circle-exclamation"></i> you exceeded the
+                maximum degree {{ maximumDegree }}
+              </span>
+            </div>
+            } }
+          </div>
+        </div>
+      </div>
+    </div>
+    @if(!grade){
+    <div id="studentId-inp" class="my-2">
+      <div class="row">
+        <div class="col-md-4">
+          <div
+            class="h-100 d-flex justify-content-center align-items-center fw-bold"
+          >
+            <label for="studentId" class="me-2">Student ID :</label>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div>
+            <input
+              id="studentId"
+              formControlName="studentId"
+              type="number"
+              class="form-control my-1"
+            />
+            @if(addEditStudentGradeForm.get('studentId')?.errors &&
+            (addEditStudentGradeForm.get('studentId')?.touched || showErrors) ){
+            @if(addEditStudentGradeForm.get('studentId')?.getError('required')){
+            <div>
+              <span class="fw-bold text-danger"
+                ><i class="fa-solid fa-circle-exclamation"></i> Student ID is
+                required</span
+              >
+            </div>
+            } }
+          </div>
+        </div>
+      </div>
+    </div>
+    }
+
+    <div class="buttons d-flex justify-content-end">
+      <button id="save-btn" class="blue-btn">Save</button>
+      <button id="cancel-btn" type="button" class="red-btn" (click)="cancel()">
+        cancel
+      </button>
+    </div>
+  </form>
+</div>
