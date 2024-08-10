@@ -1,27 +1,120 @@
-# GradingSystemFrontend
+# GradingSystem Admin Panel
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.3.
+This project is a grading system built with Angular 18 for the frontend and .NET Core Web API for the backend. The system allows an admin to manage student records and their grades across multiple subjects. The admin can add, edit, and search for students by various criteria. The portal is fully responsive, ensuring seamless user experience across different devices.
 
-## Development server
+## Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- **Student Management**
+  - Add new students.
+  - Edit existing student information.
+  
+- **Grade Management**
+  - Add grades for students in multiple subjects.
+  - Edit existing grades.
 
-## Code scaffolding
+- **Search Functionality**
+  - Search for students by name, grade, national ID, or academic year.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Technologies Used
 
-## Build
+### Frontend
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- **Angular 18**
+  - The latest version of Angular.
+  
+- **Reactive Forms**
+  - Utilized for handling form input and validation, providing a robust way to manage forms and form states.
 
-## Running unit tests
+- **Bootstrap**
+  - For styling and UI components.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Backend
 
-## Running end-to-end tests
+- **.NET Core Web API**
+  - Backend service handling all the business logic and data processing.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- **Entity Framework Core (EF Core)**
+  - ORM (Object-Relational Mapper) for database access, providing efficient data manipulation and retrieval.
 
-## Further help
+- **LINQ**
+  - Used for querying the database in a more readable and concise manner.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- **Repository Pattern**
+  - Abstracts the data layer, promoting a cleaner and more maintainable codebase.
+
+- **Unit of Work Pattern**
+  - Manages transactions across multiple repositories for consistency.
+
+- **Data Transfer Objects (DTOs)**
+  - Simplifies data exchange between the client and server.
+
+- **SQL Server**
+  - The database used for storing student and grade information.
+  
+## Getting Started
+ ### Prerequisites
+
+- Angular CLI
+- .NET SDK
+- SQL Server
+    
+**Installation**
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/David8-0/Grading-System-Frontend.git
+   git clone https://github.com/David8-0/Grading-System-Backend.git
+2. Install the dependencies for Angular Project:
+    ```bash
+     npm install
+     ng s -o
+3. Navigate to the `Grading-System-Backend` directory.
+4. Set up your SQL Server connection string in `appsettings.json`.
+5. Run the migrations to set up the database:
+   ```bash
+   dotnet ef database update
+   dotnet run
+## Usage
+
+### Adding a Student
+
+1. Navigate to the "Add Student" section.
+2. Fill in the required fields such as Name, National ID, and Academic Year.
+3. Click on the "Save" button to add the student.
+
+### Editing a Student
+
+1. Search for the student using the search functionality.
+2. Click on the "Edit" button next to the student's record.
+3. Update the necessary fields and click "Save."
+
+### Adding or Editing Grades
+
+1. Search for the student whose grades you want to manage in Subjects page.
+2. Select Edit and change the values or Add to add new student.
+3. Click "Save" to update the student's grades or add new student grades.
+
+### Searching for Students
+
+1. Use the search bar to search by name, grade, national ID, or academic year.
+2. The list of students will be filtered based on your input.
+
+   ## Contributing
+
+We welcome contributions to improve the Student Manager Application. To contribute, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch.
+3. Make your changes and commit them.
+4. Push to your fork and submit a pull request.
+
+
+## Contact
+
+For any inquiries, please contact:
+
+- **Name**: David Ayad
+- **Email**: [davidayad88@gmail.com](mailto:davidayad88@gmail.com)
+- **GitHub**: [David Ayad](https://github.com/David8-0)
+
+
+    
